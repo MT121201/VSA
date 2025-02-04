@@ -23,19 +23,18 @@ COCO_CLASSES =[
 
 
 CAPTION_FORMAT = """
-Please describe the {label} in detail in order to answer the user's question: \"{text}\". 
-Please only output your descriptions and avoid directly answering the question in your descriptions.
+Describe the {label} in detail to support answering: \"{text}\". 
+Provide only descriptions, avoiding direct answers.
 """
 
 CORRELATE_FORMAT = """
-Please correct the description \"{caption}\" of the given object briefly.
-Please refer to the descriptions of other objects in the same scene: {other_captions}
+Refine the description: \"{caption}\" based on context from other objects in the scene: {other_captions}.
 """
 
 QA_FORMAT = """
-Please answer the user\'s question: \"{text}\" according to the given image in English. \
-The following information might be related to the image and please selectively refer to them: {contexts}
+Answer: \"{text}\" based on the image. Use relevant details from: {contexts}.
 """
+
 
 
 def get_caption_prompt(label, text):

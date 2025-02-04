@@ -23,17 +23,18 @@ COCO_CLASSES =[
 
 
 CAPTION_FORMAT = """
-Describe the {label} in detail to support answering: \"{text}\". 
-Provide only descriptions, avoiding direct answers.
+Describe the {label} in detail to help answer: \"{text}\". 
+Only provide descriptions, without directly answering.
 """
 
 CORRELATE_FORMAT = """
-Refine the description: \"{caption}\" based on context from other objects in the scene: {other_captions}.
+Improve the description: \"{caption}\" using context from other objects: {other_captions}.
 """
 
 QA_FORMAT = """
-Answer: \"{text}\" based on the image. Use relevant details from: {contexts}.
+Answer: \"{text}\" based on the image, using relevant details from: {contexts}.
 """
+
 
 
 

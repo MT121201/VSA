@@ -43,6 +43,16 @@ python cli.py \
     --vlm-load-4bit
 ```
 
+## 🐛 Known Issues
+- **Testing with 4 GPUs (24GB each)**: The model loads mostly on GPU:0 with 23GB usage, while the other three GPUs use only 5GB each.
+- **Issue**: Running the command works fine, but providing input raises a CUDA-related error.
+- **To-Do List**:
+  - Check PyTorch distributed weight allocation: ✅ Done
+  - Change to manual weight layer distribution and check memory reduction: ✅ Very little reduction
+  - Check search agent load: ⏳ Not yet
+  - Check for duplicate calls: ⏳ Not yet
+  - Check LLava: ⏳ Not yet
+
 ## 🙌 Acknowledgements
 Our work is greatly inspired by **Vision Search Assistant** and other open-source projects: [GroundingDINO](https://github.com/IDEA-Research/GroundingDINO), [LLaVA](https://github.com/haotian-liu/LLaVA), [MindSearch](https://github.com/InternLM/MindSearch).
 
@@ -56,3 +66,4 @@ Original pipeline, source code, and prompt are from:
   year={2024}
 }
 ```
+

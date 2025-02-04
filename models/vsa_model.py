@@ -284,7 +284,7 @@ class VisionSearchAssistant:
         ground_model: str = "IDEA-Research/grounding-dino-base",
         ground_device: str = "cuda:1",
         vlm_model: str = "liuhaotian/llava-v1.6-vicuna-7b",
-        vlm_device: str = "cuda:2",
+        vlm_device: str = "cuda", ##change to cuda:2 if GPU >24GB
         vlm_load_4bit: bool = True,
         vlm_load_8bit: bool = False,
     ):

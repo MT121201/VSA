@@ -13,28 +13,42 @@ def process_args(args):
 
 def main(args):
     args = process_args(args)
+
+    # Initialize VisionSearchAssistant with provided arguments
     vsa = VisionSearchAssistant(
-        search_model = args.search_model,
-        ground_model = args.ground_model,
-        ground_device = args.ground_device,
-        vlm_model = args.vlm_model,
-        vlm_device = args.vlm_device,
-        vlm_load_4bit = args.vlm_load_4bit,
-        vlm_load_8bit = args.vlm_load_8bit
+        search_model=args.search_model,
+        ground_model=args.ground_model,
+        ground_device=args.ground_device,
+        vlm_model=args.vlm_model,
+        vlm_device=args.vlm_device,
+        vlm_load_4bit=args.vlm_load_4bit,
+        vlm_load_8bit=args.vlm_load_8bit
     )
+
     while True:
-        image = input('[image path] (enter "exit" to quit): ')
-        if image == 'exit':
+        image_path = input('[Image Path] (enter "exit" to quit): ').strip()
+
+        if image_path.lower() == 'exit':
+            print("Exiting program...")
             break
+
         try:
-            _ = Image.open(image)
-        except:
-            print('Image not found.')
+            with Image.open(image_path) as img:
+                img.verify()  # Ensures the file is a valid image
+        except (FileNotFoundError, IOError):
+            print(f"Error: Image '{image_path}' not found or is not a valid image.")
             continue
-        text = input('[question] (enter "exit" to quit): ')
-        if text == 'exit':
+
+        question = input('[Question] (enter "exit" to quit): ').strip()
+
+        if question.lower() == 'exit':
+            print("Exiting program...")
             break
-        vsa(image, text, ground_classes = args.ground_classes)
+
+        try:
+            vsa(image_path, question, ground_classes=args.ground_classes)
+        except Exception as e:
+            print(f"Error processing vision-language request: {e}")
 
 
 if __name__ == "__main__":

@@ -7,6 +7,8 @@
 # https://github.com/InternLM/MindSearch
 # --------------------------------------------------------
 
+
+##TODO: GPU out of memory error while using 4 GPU, model only full load in 1st GPU. After load weight, there is 1GB free space in GPU 0(23GB used), others GPU just used 5GB, error raising after recieve input image.
 import os
 import copy
 
